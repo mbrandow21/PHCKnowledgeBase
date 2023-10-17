@@ -1,0 +1,168 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  min-height: 100dvh;
+  margin: 0;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+#error-container {
+  background-color: #fff;
+  /* padding: 30px 50px; */
+  padding: 0;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
+  max-width: 90vw;
+}
+#error-container .header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #00000022;
+}
+#error-container .error-title {
+  margin: 0;
+  padding: .25rem .5rem;
+  font-size: 24px;
+  color: #e74c3c; /* Red color for error */
+}
+#error-container .error-close {
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+#error-container .error-description {
+  margin-block: 0;
+  padding-inline: .25rem;
+  padding-block: 1rem .5rem;
+  font-size: 16px;
+  color: #555;
+}
+#error-container::backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, .2);
+}
+
+header {
+  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(86, 22, 4);
+  align-items: center;
+  color: white;
+}
+header button {
+  margin-left: auto;
+  margin-right: 10%;
+}
+header img {
+  height: 15vh;
+  margin: 2.5vh;
+  cursor: pointer;
+}
+/* Button common styling */
+button {
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 0 10px;  /* Add some spacing between buttons */
+}
+
+/* Login Button */
+/* Login Button */
+#login-button {
+  background-color: #ffffff;
+  border: 2px solid rgb(86, 22, 4); /* Color from your design */
+  color: rgb(86, 22, 4);  /* Color from your design */
+}
+
+#login-button:hover {
+  background-color: rgb(86, 22, 4);  /* Color from your design */
+  color: #ffffff;
+}
+
+/* Logout Button */
+#logout-button button {
+  background-color: #ffffff;
+  border: 2px solid rgb(86, 22, 4); /* Color from your design */
+  color: rgb(86, 22, 4);  /* Color from your design */
+}
+
+#logout-button button:hover {
+  background-color: rgb(86, 22, 4);  /* Color from your design */
+  color: #ffffff;
+}
+
+/* Username Display */
+#authenticated-webpage-username {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 20px;
+  color: #ffffff;
+}
+
+div {
+  margin-left: 2vw;
+}
+/* Remove list-style and reset padding & margin */
+#nameList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+#home-page {
+  margin-right: 5%;
+}
+#nameList li {
+  border-bottom: 1px solid #eaeaea; /* Light grey border */
+  padding: 16px 0; /* Some padding on top and bottom of each list item */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+#nameList li:hover {
+  background-color: #f5f5f5; /* Light grey background on hover */
+}
+
+#nameList a {
+  text-decoration: none; /* Remove underlines from links */
+  color: inherit; /* Ensure link takes color from parent */
+  display: block; /* Make the entire block clickable */
+  padding: 8px 16px; /* Padding for better click area and spacing */
+}
+
+#nameList h2 {
+  font-size: 20px; /* Increase font-size for the title */
+  margin: 0; /* Remove default margin */
+  color: rgb(86, 22, 4); /* Dark blue color, similar to Google search result links */
+  margin-bottom: 8px; /* Some space between title and description */
+}
+
+#nameList h4 {
+  font-size: 14px; /* Slightly smaller font-size for the description */
+  margin: 0; /* Remove default margin */
+  color: #333; /* Dark grey color for the description text */
+}
+
+/* Optional: style for the link when it's active (i.e., during a mouse click) */
+#nameList a:active {
+  background-color: #eaeaea; /* A shade of grey for active link */
+}
+#searchInput {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}

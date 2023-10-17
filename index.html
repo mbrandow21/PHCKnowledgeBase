@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./main.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <img src="./PHCImg.png" alt="PHC Logo" onclick="Redirects.baseURL()">
+    <h1>Knowedge Base</h1>
+    <button id="login-button" class="non-authenticated-webpage" onclick="User.login()">Login</button>
+    <div id="authenticated-webpage-username"></div>
+    <div id="logout-button"><button onclick="User.logout()">Logout</button></div>
+  </header>
+  <div id="home-page">
+    <div class="kb-home-container">
+      <h1>Welcome to Pure Hearts Knowledge Base</h1>
+      <p class="non-authenticated-webpage">Login to get started</p>
+    </div>
+    <div class="list-of-kbitems">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <ul id="nameList">
+        <!-- Names will be appended here -->
+      </ul>
+    </div>
+  </div>
+  <div id="document-page">
+
+  </div>
+  <script src="./form.js"></script>
+</body>
+</html>
