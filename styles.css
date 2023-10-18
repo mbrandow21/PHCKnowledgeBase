@@ -58,57 +58,60 @@ header {
   background-color: rgb(86, 22, 4);
   align-items: center;
   color: white;
+  width: 100%;
 }
-header button {
+#header-container {
   margin-left: auto;
-  margin-right: 10%;
+  display: fixed;
+  flex-direction: row;
+  align-items: center;
 }
+
 header img {
   height: 15vh;
-  margin: 2.5vh;
+  margin: 2vh;
   cursor: pointer;
 }
 /* Button common styling */
 button {
   font-size: 16px;
-  padding: 10px 15px;
+  padding: 1.5vw 2vw;
   border-radius: 4px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin: 0 10px;  /* Add some spacing between buttons */
+  /* margin: 0 10px;   */
+}
+.header-button-container {
+  margin-right: 5vw;
+}
+@media (max-width: 700px) {
+  header h1 {
+    display: none;
+  }
 }
 
-/* Login Button */
-/* Login Button */
 #login-button {
   background-color: #ffffff;
-  border: 2px solid rgb(86, 22, 4); /* Color from your design */
-  color: rgb(86, 22, 4);  /* Color from your design */
+  border: 2px solid rgb(86, 22, 4); 
+  color: rgb(86, 22, 4);  
+  min-width: 10vw;
 }
 
 #login-button:hover {
-  background-color: rgb(86, 22, 4);  /* Color from your design */
+  background-color: rgb(86, 22, 4);  
   color: #ffffff;
 }
 
-/* Logout Button */
-#logout-button button {
+#logout-button {
   background-color: #ffffff;
-  border: 2px solid rgb(86, 22, 4); /* Color from your design */
-  color: rgb(86, 22, 4);  /* Color from your design */
-}
+  border: 2px solid rgb(86, 22, 4);
+  color: rgb(86, 22, 4);  
+  min-width: 10vw;
+} 
 
-#logout-button button:hover {
-  background-color: rgb(86, 22, 4);  /* Color from your design */
-  color: #ffffff;
-}
-
-/* Username Display */
-#authenticated-webpage-username {
-  font-size: 18px;
-  font-weight: 600;
-  margin-right: 20px;
+#logout-button:hover {
+  background-color: rgb(86, 22, 4);  
   color: #ffffff;
 }
 
@@ -165,4 +168,37 @@ div {
   box-sizing: border-box;
   border-radius: 4px;
   border: 1px solid #ccc;
+}
+/* Common style for both input and select for consistency */
+#searchInput, #ministryDropdown {
+  width: calc(50% - 6px); /* 50% width minus half the gap between them */
+  padding: 12px;
+  margin: 12px 0;
+  margin-right: 6px; /* A small gap between the input and dropdown */
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px; /* Matching font size with your input */
+  transition: 0.3s; /* Smooth transition for hover effects */
+}
+
+#ministryDropdown {
+  cursor: pointer; /* Indicates it's clickable */
+}
+
+/* Hover effect for the dropdown */
+#ministryDropdown:hover {
+  border-color: #999; /* A slightly darker border on hover */
+}
+
+/* When the dropdown is focused (clicked on or navigated via keyboard) */
+#ministryDropdown:focus {
+  outline: none; /* Remove default browser outline */
+  border-color: #666; /* Even darker border for focus */
+  box-shadow: 0 0 10px rgba(102, 102, 102, 0.2); /* A subtle focus shadow */
+}
+
+#procedure-search-filters {
+  display: flex;
+  flex-direction: row;
 }

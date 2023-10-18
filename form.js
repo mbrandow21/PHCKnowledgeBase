@@ -5,11 +5,12 @@ const attendanceEventInput = document.getElementById('attendance-event-input');
 
 
 const getProcedures = async () => {
-
-  const procedureData = await MinistryPlatformAPI.request('get', '/tables/procedures', {"$select":"Procedure_Title, Procedure_ID, Purpose","$filter":"Active = 1", "$orderby":"Procedure_Title ASC"}, {})
-
+  const procedureData = await MinistryPlatformAPI.request('get', '/tables/procedures', {"$select":"Procedure_Title, Procedure_ID, Purpose, Ministry_ID_Table.[Ministry_Name]","$filter":"Active = 1", "$orderby":"Procedure_Title ASC"}, {})
   return procedureData
-
+}
+const getMinistries = async () => {
+  const ministries = await MinistryPlatformAPI.request('get', '/tables/procedures', {"$select":"Ministry_ID_Table.[Ministry_Name]", "$filter":"Active = 1", "$distinct":"True"}, {})
+  return ministries
 }
 
 function decodeJWT() {
@@ -49,7 +50,6 @@ function getUserGUID() {
 }
 
 const nonAuthenticatedWebpage = document.getElementsByClassName('non-authenticated-webpage');
-const authenticatedWebpageUsername = document.getElementById('authenticated-webpage-username');
 const logoutButton = document.getElementById('logout-button'); 
 
 async function authenticateWebpage() {
@@ -66,10 +66,6 @@ async function authenticateWebpage() {
         }
 
         // Populate the username
-        const username = decodedJWT.name;
-        const h3Element = document.createElement('h3');
-        h3Element.textContent = 'Logged In: ' + username;
-        authenticatedWebpageUsername.appendChild(h3Element);
         populateList(); // Assuming this function populates some list as its name suggests
       }else {
         // Hide the logout button
@@ -88,29 +84,51 @@ async function authenticateWebpage() {
 }
 authenticateWebpage();
 
-
-
 // Reference to the unordered list in your HTML
 async function populateList() {
   const ulElement = document.getElementById("nameList");
   const searchInput = document.getElementById("searchInput");
+  const ministryDropdown = document.getElementById("ministryDropdown");
+  // Populate dropdown with ministries
+  const ministries = await getMinistries();
+  console.log(ministries)
+  ministries.forEach(ministry => {
+    const optionElement = document.createElement("option");
+    const ministryName = ministry.Ministry_Name || "null";
+    optionElement.value = ministryName;
+    optionElement.textContent = ministryName;
+    ministryDropdown.appendChild(optionElement);
+  });
 
-  // Await the data from the asynchronous call
+
   const objectsArray = await getProcedures();
+
+  // Initial rendering of the list
   renderList(objectsArray);
 
-  searchInput.addEventListener('input', function() {
+  // Event listeners for the search input and the ministry dropdown
+  searchInput.addEventListener('input', filterList);
+  ministryDropdown.addEventListener('change', filterList);
+
+  function filterList() {
       const filteredArray = objectsArray.filter(obj => {
           const title = obj.Procedure_Title || '';
           const purpose = obj.Purpose || '';
-          return title.toLowerCase().includes(searchInput.value.toLowerCase()) || 
-                 purpose.toLowerCase().includes(searchInput.value.toLowerCase());
+          const ministry = obj.Ministry_Name || '';
+
+          const searchCriteria = searchInput.value.toLowerCase();
+          const ministryCriteria = ministryDropdown.value;
+
+          return (
+              (title.toLowerCase().includes(searchCriteria) || purpose.toLowerCase().includes(searchCriteria)) &&
+              (ministryCriteria === '' || ministry === ministryCriteria)
+          );
       });
 
-      // After filtering, re-render the list with the filtered array
       renderList(filteredArray);
-  });
+  }
 }
+
 
 
 function renderList(array) {
@@ -128,9 +146,8 @@ function renderList(array) {
         const titleElement = document.createElement("h2");
         const descriptionElement = document.createElement("h4");
 
-        titleElement.textContent = obj.Procedure_Title;
+        titleElement.textContent = obj.Procedure_Title + ' | ' + obj.Ministry_Name;
         descriptionElement.textContent = obj.Purpose;
-
         // Append the title and description to the anchor
         anchorElement.appendChild(titleElement);
         anchorElement.appendChild(descriptionElement);

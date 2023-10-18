@@ -14,9 +14,10 @@
   <header>
     <img src="./PHCImg.png" alt="PHC Logo" onclick="Redirects.baseURL()">
     <h1>Knowedge Base</h1>
-    <button id="login-button" class="non-authenticated-webpage" onclick="User.login()">Login</button>
-    <div id="authenticated-webpage-username"></div>
-    <div id="logout-button"><button onclick="User.logout()">Logout</button></div>
+    <div id="header-container">
+      <div class="header-button-container"><button id="login-button" class="non-authenticated-webpage" onclick="User.login()">Login</button></div>
+      <div class="header-button-container"><button id="logout-button" onclick="User.logout()">Logout</button></div>
+    </div>
   </header>
   <div id="home-page">
     <div class="kb-home-container">
@@ -24,7 +25,13 @@
       <p class="non-authenticated-webpage">Login to get started</p>
     </div>
     <div class="list-of-kbitems">
-      <input type="text" id="searchInput" placeholder="Search...">
+      <div id="procedure-search-filters">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <select id="ministryDropdown">
+          <option value="">All Ministries</option>
+          <!-- Ministry options will be added here dynamically -->
+        </select>
+      </div>
       <ul id="nameList">
         <!-- Names will be appended here -->
       </ul>
